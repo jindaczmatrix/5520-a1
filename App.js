@@ -21,6 +21,8 @@ export default function App() {
   let handleFinishLater = () => {
     setConfirmed(false);
     setScreen('finish');
+    setEmail("");
+    setPhone("");
   }
 
   let handleRestart = () => {

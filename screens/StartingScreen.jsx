@@ -11,6 +11,7 @@ import Card from "../components/Card";
 import InputCmp from "../components/InputCmp";
 import Btn from "../components/Btn";
 import PurpleText from "../components/PurpleText";
+import { colors } from "../utils/colors";
 
 const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
   let [emailError, setEmailError] = useState("");
@@ -32,7 +33,15 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
       setPhoneError("Phone number must be 10 digits");
     }
 
-    if (!emailError && !phoneError) {
+    
+    
+    // setTimeout(() => {
+    //   console.log("Delayed for 1 second.");
+    // }, 1000);
+    console.log(!emailError, !phoneError);
+    
+
+    if (emailError == "" && phoneError == "") {
       setScreen("confirm");
     }
   };
@@ -40,8 +49,8 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
   let handleReset = () => {
     setEmail("");
     setPhone("");
-    setEmailError("");
-    setPhoneError("");
+    setEmailError(" ");
+    setPhoneError(" ");
   };
 
   return (
@@ -53,18 +62,18 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
           label="Email Address"
           value={email}
           onChangeText={setEmail}
-          errorType={emailError}
         />
+        {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
 
         <InputCmp
           label="Phone Number"
           value={phone}
           onChangeText={setPhone}
-          errorType={phoneError}
         />
+        {phoneError ? <Text style={styles.error}>{phoneError}</Text> : null}
 
         <View style={styles.buttonContainer}>
-          <Btn title="Reset" onPress={handleReset} />
+          <Btn title="Reset" onPress={handleReset} color={colors.red} />
           <Btn title="Sign up" onPress={handleSignUp} />
         </View>
       </Card>

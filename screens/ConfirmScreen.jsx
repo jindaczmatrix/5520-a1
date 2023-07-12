@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Modal } from "react-native";
 import Card from "../components/Card";
 import Btn from "../components/Btn";
 import PurpleText from "../components/PurpleText";
+import { colors } from "../utils/colors";
 
 const ConfirmScreen = ({
   email,
@@ -23,7 +24,7 @@ const ConfirmScreen = ({
           <PurpleText text={`Phone Number: ${phone}`} />
           <PurpleText text={"Please Confirm They are correct"} />
 
-          <Btn title="Go Back" onPress={handleGoStart} />
+          <Btn title="Go Back" onPress={handleGoStart}  color={colors.red} />
           <Btn title="Confirm" onPress={handleConfirm} />
           <Btn title="Finish Later" onPress={handleFinishLater} />
         </Card>

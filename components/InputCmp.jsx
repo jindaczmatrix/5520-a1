@@ -6,7 +6,6 @@ const InputCmp = ({
 	label,
 	value,
 	onChangeText,
-	errorType,
 }) => {
   return (
 	<View style={styles.container}>
@@ -17,7 +16,7 @@ const InputCmp = ({
           value={value}
           onChangeText={onChangeText}
         />
-        {errorType ? <Text style={styles.error}>{errorType}</Text> : null}
+        
 	</View>
   )
 }

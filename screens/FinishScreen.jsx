@@ -3,16 +3,16 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import InputCmp from "../components/InputCmp";
 import Card from "../components/Card";
 import Btn from "../components/Btn";
+import PurpleText from "../components/PurpleText";
+import { colors } from "../utils/colors";
 
 const FinishScreen = ({ confirmed, phone, handleRestart }) => {
   return (
     <View style={styles.container}>
       {confirmed && (
         <Card>
-          <Text>
-            Thank you for signing up, here is an image with a URL constructed
-            based on the last digit of your phone number value as its source{" "}
-          </Text>
+			<PurpleText text={"Thank you for signing up, here is an image with a URL constructed based on the last digit of your phone number value as its source"}/>
+          
           <Image
             style={styles.image}
             source={{
@@ -24,12 +24,12 @@ const FinishScreen = ({ confirmed, phone, handleRestart }) => {
 
       {!confirmed && (
         <Card>
-          <Text>Sorry to See you Go</Text>
+		  <PurpleText text={"Sorry to See you Go"}/>
           <Image style={styles.image} source={require("../assets/sad.png")} />
         </Card>
       )}
 
-      <Btn title="Start Again" onPress={handleRestart} />
+      <Btn title="Start Again" onPress={handleRestart} color={colors.blue}/>
     </View>
   );
 };
@@ -37,17 +37,16 @@ const FinishScreen = ({ confirmed, phone, handleRestart }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    marginTop: 50,
     alignItems: "center",
-    backgroundColor: "#F5F5F5",
   },
   card: {
     width: 300,
     padding: 20,
     borderRadius: 10,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: colors.white,
     elevation: 5,
-    shadowColor: "#000000",
+    shadowColor: colors.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
+	alignSelf: "center",
   },
 });
 

@@ -6,7 +6,7 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import InputCmp from "../components/InputCmp";
 import Btn from "../components/Btn";
@@ -14,13 +14,20 @@ import PurpleText from "../components/PurpleText";
 import { colors } from "../utils/colors";
 
 const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
-  let [emailError, setEmailError] = useState("");
-  let [phoneError, setPhoneError] = useState("");
+  let [emailError, setEmailError] = useState(" ");
+  let [phoneError, setPhoneError] = useState(" ");
 
+  useEffect(() => {
+    if (emailError === "" && phoneError === "") {
+      setScreen("confirm");
+    }
+  }, [emailError, phoneError]);
+
+  // WHY NEED TO CLICK TWICE?
+  // BECAUSE STATE UPDATE IS ASYNCHRONOUS
   let handleSignUp = () => {
     setEmailError("");
     setPhoneError("");
-
     if (email === "") {
       setEmailError("Email is required");
     } else if (!email.includes("@") || !email.includes(".")) {
@@ -29,23 +36,12 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
 
     if (phone === "") {
       setPhoneError("Phone number is required");
-    } else if (phone.length !== 10) {
+    } else if (phone.length !== 10 || isNaN(phone)) {
       setPhoneError("Phone number must be 10 digits");
-    }
-
-    
-    
-    // setTimeout(() => {
-    //   console.log("Delayed for 1 second.");
-    // }, 1000);
-    console.log(!emailError, !phoneError);
-    
-
-    if (emailError == "" && phoneError == "") {
-      setScreen("confirm");
     }
   };
 
+ 
   let handleReset = () => {
     setEmail("");
     setPhone("");
@@ -84,7 +80,6 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
     alignItems: "center",
   },
 

@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import StartingScreen from "./screens/StartingScreen";
 import ConfirmScreen from "./screens/ConfirmScreen";
 import FinishScreen from "./screens/FinishScreen";
+import { LinearGradient } from "expo-linear-gradient";
+import { colors } from "./utils/colors";
 
 export default function App() {
   const [screen, setScreen] = useState('start');
@@ -34,7 +36,10 @@ export default function App() {
   
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={[colors.red, colors.purple]}
+      style={styles.container}
+    >
       {screen === 'start' && <StartingScreen
         email={email}
         setEmail={setEmail}
@@ -59,7 +64,7 @@ export default function App() {
         handleRestart={handleRestart}  
       />}
       
-    </View>
+    </LinearGradient>
   );
 }
 

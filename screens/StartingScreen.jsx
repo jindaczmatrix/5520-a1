@@ -22,9 +22,7 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
       setScreen("confirm");
     }
   }, [emailError, phoneError]);
-
-  // WHY NEED TO CLICK TWICE?
-  // BECAUSE STATE UPDATE IS ASYNCHRONOUS
+  
   let handleSignUp = () => {
     setEmailError("");
     setPhoneError("");
@@ -40,7 +38,6 @@ const StartingScreen = ({ email, setEmail, phone, setPhone, setScreen }) => {
       setPhoneError("Phone number must be 10 digits");
     }
   };
-
  
   let handleReset = () => {
     setEmail("");
